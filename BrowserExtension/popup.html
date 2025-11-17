@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Content Remover</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <span class="icon">🤖</span>
+      <h1>AI Content Remover</h1>
+      <p class="subtitle">Détection communautaire de contenu IA</p>
+    </div>
+    
+    <!-- Statistiques globales -->
+    <div class="stats">
+      <h2>📊 Statistiques globales</h2>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <span class="stat-label">Tweets taggés</span>
+          <span class="stat-value" id="totalTweets">-</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Votes total</span>
+          <span class="stat-value" id="totalVotes">-</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Contenus IA</span>
+          <span class="stat-value highlight" id="aiTweets">-</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Session actuelle</span>
+          <span class="stat-value highlight" id="sessionBlocked">0</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Actions -->
+    <div class="actions">
+      <button id="refreshBtn" class="btn btn-primary">
+        <span class="btn-icon">🔄</span>
+        Rafraîchir
+      </button>
+      <button id="resetBtn" class="btn btn-secondary">
+        <span class="btn-icon">↺</span>
+        Reset
+      </button>
+    </div>
+    
+    <!-- Configuration -->
+    <div class="settings">
+      <h3>⚙️ Configuration</h3>
+      <label class="switch-label">
+        <input type="checkbox" id="autoHide" checked>
+        <span class="switch-text">Masquer automatiquement les tweets IA</span>
+      </label>
+      <label class="switch-label">
+        <input type="checkbox" id="showButtons" checked>
+        <span class="switch-text">Afficher les boutons de vote</span>
+      </label>
+    </div>
+    
+    <!-- Status API -->
+    <div id="apiStatus" class="api-status">
+      <span class="status-indicator"></span>
+      <span class="status-text">Connexion à l'API...</span>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <a href="https://github.com/votre-repo/ai-content-remover" target="_blank" class="link">
+        📖 Documentation
+      </a>
+      <span class="version">v1.0.0</span>
+    </div>
+  </div>
+  
+  <script src="config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
+

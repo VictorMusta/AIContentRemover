@@ -1,0 +1,90 @@
+### AI Content Remover API - Tests HTTP
+### Utilisez ce fichier dans JetBrains Rider pour tester l'API facilement
+### Cliquez sur la flèche verte à côté de chaque requête pour l'exécuter
+
+@baseUrl = https://localhost:5001
+@apiKey = dev-api-key-12345
+
+### =================================================================
+### 1. HEALTH CHECK
+### =================================================================
+
+### Vérifier que l'API fonctionne
+GET {{baseUrl}}/health
+Accept: application/json
+
+### =================================================================
+### 2. VÉRIFICATION DE TWEETS
+### =================================================================
+
+### Vérifier un tweet qui n'existe pas encore
+GET {{baseUrl}}/api/tweets/check/1234567890123456789
+Accept: application/json
+
+###
+
+### Vérifier plusieurs tweets en batch (OPTIMISÉ)
+POST {{baseUrl}}/api/tweets/check/batch
+Content-Type: application/json
+
+{
+  "tweetIds": [
+    "1234567890123456789",
+    "9876543210987654321",
+    "1111111111111111111"
+  ]
+}
+
+### =================================================================
+### 3. TAGGER DES TWEETS
+### =================================================================
+
+### Premier utilisateur vote "IA"
+POST {{baseUrl}}/api/tweets/tag
+Content-Type: application/json
+
+{
+  "tweetId": "1234567890123456789",
+  "userIdentifier": "user-uuid-001",
+  "isAiVote": true
+}
+
+###
+
+### Deuxième utilisateur vote "IA"
+POST {{baseUrl}}/api/tweets/tag
+Content-Type: application/json
+
+{
+  "tweetId": "1234567890123456789",
+  "userIdentifier": "user-uuid-002",
+  "isAiVote": true
+}
+
+###
+
+### Troisième utilisateur vote "IA" (atteint le seuil)
+POST {{baseUrl}}/api/tweets/tag
+Content-Type: application/json
+
+{
+  "tweetId": "1234567890123456789",
+  "userIdentifier": "user-uuid-003",
+  "isAiVote": true
+}
+
+### =================================================================
+### 4. STATISTIQUES
+### =================================================================
+
+### Obtenir les statistiques globales
+GET {{baseUrl}}/api/tweets/stats
+Accept: application/json
+
+###
+
+### Obtenir les top tweets taggés IA
+GET {{baseUrl}}/api/tweets/top?limit=10
+Accept: application/json
+
+###
